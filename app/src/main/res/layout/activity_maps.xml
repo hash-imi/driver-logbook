@@ -80,7 +80,7 @@
             android:layout_height="wrap_content"
             android:background="#00bbff"
             android:id="@+id/driverName"
-            android:textColor="#aaa"
+            android:textColor="#000"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true" />
 
