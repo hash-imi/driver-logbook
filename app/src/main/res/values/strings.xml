@@ -4,11 +4,17 @@
 
     <string name="prename">Vorname</string>
     <string name="surname">Nachname</string>
-
     <string name="email_adress">Email</string>
     <string name="mobile_number">Telefon</string>
     <string name="registration_number">IdNummer</string>
     <string name="save_driver">Save</string>
+
+    <string name="logbook_id">ID</string>
+    <string name="logbook_driver">Driver</string>
+    <string name="logbook_departure_date_time">Departure Date Time</string>
+    <string name="logbook_departure_location">Departure Location</string>
+    <string name="logbook_arrival_date_time">Arrival Date Time</string>
+    <string name="logbook_arrival_location">Arrival Location</string>
 
     <string name="home">Home</string>
     <string name="driver_info">Driverlist</string>
@@ -21,10 +27,14 @@
     <string name="create_driver_new">New Contact 2</string>
     <string name="view_driver">View Driver</string>
     <string name="show_maps">Google Maps</string>
+    <string name="view_history">View History</string>
     <string name="title_activity_new_driver">NewDriverActivity</string>
     <string name="title_activity_new_contact">NewContactActivity</string>
     <string name="title_activity_data_list">DataListActivity</string>
     <string name="title_activity_maps">Map</string>
     <string name="startBtn">Start!</string>
     <string name="stopBtn">Stop!</string>
+    <string name="title_activity_log_book_history">LogBookHistoryActivity</string>
+
+    <string name="hello_world">Hello world!</string>
 </resources>

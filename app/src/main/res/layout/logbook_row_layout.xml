@@ -3,42 +3,45 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="40dp"
+    android:layout_height="match_parent"
     android:background="#FF99CC99">
 
     <TextView
         android:layout_margin="10dp"
-        android:layout_width="80dp"
+        android:layout_width="50dp"
         android:layout_height="wrap_content"
-        android:id="@+id/text_driver_prename"
-        android:text="@string/prename"
+        android:id="@+id/text_id"
+        android:text="@string/logbook_id"
         android:gravity="center"
         android:textColor="#000000"
         />
+
     <TextView
         android:layout_margin="10dp"
-        android:layout_width="80dp"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:id="@+id/text_driver_surname"
-        android:text="@string/surname"
+        android:id="@+id/text_driver"
+        android:text="@string/logbook_driver"
         android:gravity="center"
         android:textColor="#000000"
         />
+
     <TextView
         android:layout_margin="10dp"
-        android:layout_width="250dp"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:id="@+id/text_driver_mobilenumber"
-        android:text="@string/mobile_number"
+        android:id="@+id/text_departure_date_time"
+        android:text="@string/logbook_departure_date_time"
         android:gravity="center"
         android:textColor="#000000"
         />
+
     <TextView
         android:layout_margin="10dp"
-        android:layout_width="120dp"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:id="@+id/text_driver_email"
-        android:text="@string/email_adress"
+        android:id="@+id/text_departure_location"
+        android:text="@string/logbook_departure_location"
         android:gravity="center"
         android:textColor="#000000"
         />
@@ -46,10 +49,19 @@
         android:layout_margin="10dp"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:id="@+id/text_driver_registration_number"
-        android:text="@string/registration_number"
+        android:id="@+id/text_arrival_date_time"
+        android:text="@string/logbook_arrival_date_time"
+        android:gravity="center"
+        android:textColor="#000000"
+        />
+    <TextView
+        android:layout_margin="10dp"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/text_arrival_location"
+        android:text="@string/logbook_arrival_location"
         android:gravity="center"
         android:textColor="#000000"
         />
 
- </LinearLayout>
+</LinearLayout>

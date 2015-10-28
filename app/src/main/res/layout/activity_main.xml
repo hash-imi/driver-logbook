@@ -27,18 +27,9 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/create_driver_new"
-        android:id="@+id/create_driverBtn_new"
-        android:layout_gravity="center"
-        android:layout_below="@+id/create_driverBtn"
-        android:layout_centerHorizontal="true" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:text="@string/view_driver"
         android:id="@+id/view_driverBtn"
-        android:layout_below="@+id/create_driverBtn_new"
+        android:layout_below="@+id/create_driverBtn"
         android:layout_centerHorizontal="true" />
 
     <Button
@@ -65,13 +56,21 @@
         android:layout_below="@+id/disconnectBtn"
         android:layout_centerHorizontal="true"/>
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/view_history"
+        android:id="@+id/view_historyBtn"
+        android:layout_below="@+id/mapsBtn"
+        android:layout_centerHorizontal="true" />
+
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/imageView"
         android:src="@drawable/bluetooth"
         android:contentDescription="@string/logoBtn"
-        android:layout_below="@+id/disconnectBtn"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="51dp" />
+        android:layout_marginTop="65dp"
+        android:layout_below="@+id/view_historyBtn"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>

@@ -27,6 +27,7 @@ public class MainActivity extends Activity {
     private Button new_driverBtn;
     private Button new_viewdriverBtn;
     private Button new_mapsBtn;
+    private Button new_historyBtn;
     public TextView statusUpdate;
     public Button connect;
     public Button disconnect;
@@ -78,6 +79,7 @@ public class MainActivity extends Activity {
         OnClickNewDriver();
         OnClickViewDriver();
         OnClickMaps();
+        OnClickViewHistory();
         setupUI();
         //setCreate_driver();
     }//end onCreate
@@ -100,7 +102,19 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View v) {
                 //Intent intent = new Intent("com.example.mohammad.bluetoothconnect.DataListActivity");
-                startActivity(new Intent(MainActivity.this,DataListActivity.class));
+                startActivity(new Intent(MainActivity.this, DataListActivity.class));
+            }
+        });
+    }
+
+    public void OnClickViewHistory(){
+        new_historyBtn = (Button)findViewById(R.id.view_historyBtn);
+        new_historyBtn.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Intent intent = new Intent("com.example.mohammad.bluetoothconnect.LogBookHistoryActivity");
+                //startActivity(intent);
+                startActivity(new Intent(MainActivity.this, LogBookHistoryActivity.class));
             }
         });
     }

@@ -58,6 +58,7 @@
             android:layout_height="wrap_content"
             android:text="@string/startBtn"
             android:id="@+id/startBtn"
+            android:onClick="addToLogBookStart"
             android:layout_weight="0.10" />
 
         <Button
@@ -65,6 +66,7 @@
             android:layout_height="wrap_content"
             android:text="@string/stopBtn"
             android:id="@+id/stopBtn"
+            android:onClick="addToLogBookStop"
             android:layout_weight="0.10" />
 
         <TextView
@@ -83,8 +85,6 @@
             android:textColor="#000"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true" />
-
-
     </LinearLayout>
 
     <!--

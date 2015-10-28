@@ -1,5 +1,7 @@
 package com.example.mohammad.bluetoothconnect;
 
+import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
@@ -27,8 +29,19 @@ public class MapsActivity extends FragmentActivity {
     private Button new_startBtn;
     private Button new_stopBtn;
 
+    Context context = this;
+    LogBookDB logBookDbHelper;
+    SQLiteDatabase sqLiteDatabase;
+
     private GoogleMap mMap; // Might be null if Google Play services APK is not available.
     GoogleMap googleMap;
+
+    //String departure_date_time;
+    //String driver_name;
+    //String departure_location;
+    //String arrival_date_time;
+    //String arrival_location;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -103,10 +116,31 @@ public class MapsActivity extends FragmentActivity {
         new_startBtn = (Button)findViewById(R.id.startBtn);
         new_stopBtn = (Button)findViewById(R.id.stopBtn);
         new_stopBtn.setVisibility(View.GONE);
-        TextView textView = (TextView)findViewById(R.id.dateView);
-        String date = DateFormat.getDateTimeInstance().format(new Date());
-        textView.setText(date);
+        Thread updateThread = new Thread(){
+            @Override
+            public void run() {
+                try {
+                    while (!isInterrupted()){
+                        Thread.sleep(1000);
+                        runOnUiThread(refresh);
+                    }
+                }
+                    catch (InterruptedException e) {
+                    e.printStackTrace();
+                    }
+            }
+        };
+        updateThread.start();
     }
+
+    final Runnable refresh = new Runnable() {
+        @Override
+        public void run() {
+            TextView textView = (TextView)findViewById(R.id.dateView);
+            String date = DateFormat.getDateTimeInstance().format(new Date());
+            textView.setText(date);
+        }
+    };
 
     public void driverInfo(){
         TextView textView = (TextView)findViewById(R.id.driverName);
@@ -119,6 +153,39 @@ public class MapsActivity extends FragmentActivity {
         //Intent intent = getIntent();
         //String surname1 = intent.getStringExtra(res.getSurname());
         // surname1.toString();
+    }
+
+    public void addToLogBookStart(View view) throws InterruptedException {
+        new_startBtn.setVisibility(View.GONE);
+        new_stopBtn.setVisibility(View.VISIBLE);
+        TextView Driver = (TextView)findViewById(R.id.driverName);
+        TextView Departure_Date_Time = (TextView)findViewById(R.id.dateView);
+        TextView Departure_Location = (TextView)findViewById(R.id.searchLocation);
+
+        String driver_name = Driver.getText().toString();
+        String departure_date_time = Departure_Date_Time.getText().toString();
+        String departure_location = Departure_Location.getText().toString();
+
+        logBookDbHelper = new LogBookDB(context);
+        sqLiteDatabase = logBookDbHelper.getWritableDatabase();
+        logBookDbHelper.addDriverInformations(null, driver_name, departure_date_time, departure_location, null, null, sqLiteDatabase);
+        Toast.makeText(getBaseContext(), "Departure data saved", Toast.LENGTH_LONG).show();
+    }
+
+    public void addToLogBookStop(View view) throws InterruptedException{
+
+        TextView Arrival_Date_Time = (TextView)findViewById(R.id.dateView);
+        TextView Arrival_Location = (TextView)findViewById(R.id.searchLocation);
+
+        String arrival_date_time = Arrival_Date_Time.getText().toString();
+        String arrival_location = Arrival_Location.getText().toString();
+
+        logBookDbHelper = new LogBookDB(context);
+        sqLiteDatabase = logBookDbHelper.getWritableDatabase();
+        logBookDbHelper.addDriverInformationsUpdate2(null, null, null ,null, arrival_date_time, arrival_location, sqLiteDatabase);
+        Toast.makeText(getBaseContext(), "Arrival data saved", Toast.LENGTH_LONG).show();
+        logBookDbHelper.close();
+        super.finish();
     }
 
     /**
