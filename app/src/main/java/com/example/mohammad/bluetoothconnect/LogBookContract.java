@@ -8,7 +8,7 @@ public class LogBookContract {
 
     }
     public static abstract class NewLogBookInfo{
-        public static final String ID = "id";
+        public static final String ID = "_id";
         public static final String DEPARTURE_DATE_TIME = "departure_date_time";
         public static final String ARRIVAL_DATE_TIME = "arrival_date_time";
         public static final String DEPARTURE_LOCATION = "departure_location";

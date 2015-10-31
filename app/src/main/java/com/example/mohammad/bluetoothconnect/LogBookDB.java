@@ -80,6 +80,7 @@ public class LogBookDB extends SQLiteOpenHelper{
         if(DATABASE_VERSION < 3){
             db.execSQL(DATABASE_VERSION_2);
         }
+
     }
 
     public void addDriverInformations(String id, String driver, String departure_date_time, String departure_location, String arrival_date_time, String arrival_location, SQLiteDatabase db){
@@ -96,30 +97,27 @@ public class LogBookDB extends SQLiteOpenHelper{
 
     public void addDriverInformationsUpdate(String id, String driver, String departure_date_time, String departure_location, String arrival_date_time, String arrival_location, SQLiteDatabase db){
         ContentValues contentValues = new ContentValues();
-        contentValues.put(LogBookContract.NewLogBookInfo.ID, id);
+        //contentValues.put(LogBookContract.NewLogBookInfo.ID, id);
+       // contentValues.put(LogBookContract.NewLogBookInfo.DRIVER_NAME, driver);
+       // contentValues.put(LogBookContract.NewLogBookInfo.DEPARTURE_DATE_TIME, departure_date_time);
+        contentValues.put(LogBookContract.NewLogBookInfo.DEPARTURE_LOCATION, departure_location);
+        contentValues.put(LogBookContract.NewLogBookInfo.ARRIVAL_DATE_TIME, arrival_date_time);
+        contentValues.put(LogBookContract.NewLogBookInfo.ARRIVAL_LOCATION, arrival_location);
+        //String dt = "2015-"
+        //db.update(LogBookContract.NewLogBookInfo.TABLE_LOG_BOOK, contentValues, LogBookContract.NewLogBookInfo.DEPARTURE_DATE_TIME + " > '2015-10-30 15:55:30'"  , null);
+        db.update(LogBookContract.NewLogBookInfo.TABLE_LOG_BOOK, contentValues, LogBookContract.NewLogBookInfo.ID + " > " + 0, null);
+        Log.d("DATABASE OPERATIONS", "ARRIVAL_DATE_TIME, ARRIVAL_LOCATION, inserted...");
+    }
+
+    public void addDriverInformationsUpdate2(String id, String driver, String departure_date_time, String departure_location, String arrival_date_time, String arrival_location, SQLiteDatabase db){
+        ContentValues contentValues = new ContentValues();
+        //contentValues.put(LogBookContract.NewLogBookInfo.ID, id);
         contentValues.put(LogBookContract.NewLogBookInfo.DRIVER_NAME, driver);
         contentValues.put(LogBookContract.NewLogBookInfo.DEPARTURE_DATE_TIME, departure_date_time);
         contentValues.put(LogBookContract.NewLogBookInfo.DEPARTURE_LOCATION, departure_location);
         contentValues.put(LogBookContract.NewLogBookInfo.ARRIVAL_DATE_TIME, arrival_date_time);
         contentValues.put(LogBookContract.NewLogBookInfo.ARRIVAL_LOCATION, arrival_location);
-        db.beginTransaction();
-        try {
-            //db.update(LogBookContract.NewLogBookInfo.TABLE_LOG_BOOK, contentValues, LogBookContract.NewLogBookInfo.ID + " = ?", null);
-            //db.update(LogBookContract.NewLogBookInfo.TABLE_LOG_BOOK, contentValues, LogBookContract.NewLogBookInfo.ARRIVAL_DATE_TIME, null);
-            //db.insert(LogBookContract.NewLogBookInfo.TABLE_LOG_BOOK, null, contentValues);
-            Log.d("DATABASE OPERATIONS", "ARRIVAL_DATE_TIME, ARRIVAL_LOCATION, inserted...");
-            db.setTransactionSuccessful();
-        } finally {
-            db.endTransaction();
-            Log.d("DATABASE OPERATIONS", "TRANSACTION WAS ENDED");
-        }
-    }
-
-    public int addDriverInformationsUpdate2(String id, String driver, String departure_date_time, String departure_location, String arrival_date_time, String arrival_location, SQLiteDatabase db){
-        ContentValues contentValues = new ContentValues();
-        contentValues.put(LogBookContract.NewLogBookInfo.ARRIVAL_DATE_TIME, arrival_date_time);
-        contentValues.put(LogBookContract.NewLogBookInfo.ARRIVAL_LOCATION, arrival_location);
-        return db.update(LogBookContract.NewLogBookInfo.TABLE_LOG_BOOK, contentValues,LogBookContract.NewLogBookInfo.ID + " = ?", null);
+        db.update(LogBookContract.NewLogBookInfo.TABLE_LOG_BOOK,contentValues, LogBookContract.NewLogBookInfo.ID + " = " + id, null);
     }
 
 

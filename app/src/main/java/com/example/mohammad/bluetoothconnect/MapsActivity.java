@@ -36,7 +36,7 @@ public class MapsActivity extends FragmentActivity {
     private GoogleMap mMap; // Might be null if Google Play services APK is not available.
     GoogleMap googleMap;
 
-    //String departure_date_time;
+    String departure_date_time;
     //String driver_name;
     //String departure_location;
     //String arrival_date_time;
@@ -163,13 +163,14 @@ public class MapsActivity extends FragmentActivity {
         TextView Departure_Location = (TextView)findViewById(R.id.searchLocation);
 
         String driver_name = Driver.getText().toString();
-        String departure_date_time = Departure_Date_Time.getText().toString();
+        departure_date_time = Departure_Date_Time.getText().toString();
         String departure_location = Departure_Location.getText().toString();
 
         logBookDbHelper = new LogBookDB(context);
         sqLiteDatabase = logBookDbHelper.getWritableDatabase();
         logBookDbHelper.addDriverInformations(null, driver_name, departure_date_time, departure_location, null, null, sqLiteDatabase);
         Toast.makeText(getBaseContext(), "Departure data saved", Toast.LENGTH_LONG).show();
+        logBookDbHelper.close();
     }
 
     public void addToLogBookStop(View view) throws InterruptedException{
@@ -177,12 +178,14 @@ public class MapsActivity extends FragmentActivity {
         TextView Arrival_Date_Time = (TextView)findViewById(R.id.dateView);
         TextView Arrival_Location = (TextView)findViewById(R.id.searchLocation);
 
+
         String arrival_date_time = Arrival_Date_Time.getText().toString();
         String arrival_location = Arrival_Location.getText().toString();
 
+
         logBookDbHelper = new LogBookDB(context);
         sqLiteDatabase = logBookDbHelper.getWritableDatabase();
-        logBookDbHelper.addDriverInformationsUpdate2(null, null, null ,null, arrival_date_time, arrival_location, sqLiteDatabase);
+        logBookDbHelper.addDriverInformationsUpdate(null, null, departure_date_time, null, arrival_date_time, arrival_location, sqLiteDatabase);
         Toast.makeText(getBaseContext(), "Arrival data saved", Toast.LENGTH_LONG).show();
         logBookDbHelper.close();
         super.finish();
@@ -227,4 +230,3 @@ public class MapsActivity extends FragmentActivity {
         mMap.setMyLocationEnabled(true);
     }
 }
-
